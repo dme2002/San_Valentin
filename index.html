@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Un mensaje especial de amor en San Valentín.">
+    <title>Para Mi Amor</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+        .slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+        .slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+        .overlay {
+            background: rgba(0, 0, 0, 0.5);
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        h1 {
+            font-size: 3em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+        p {
+            font-size: 1.5em;
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 10px;
+        }
+        .heart {
+            font-size: 5em;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+        .petal {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: red;
+            border-radius: 50%;
+            opacity: 0.7;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            0% { transform: translateY(0) translateX(0); opacity: 1; }
+            100% { transform: translateY(100vh) translateX(calc(10vw - 5vw)); opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="slideshow">
+        <div class="slide active" style="background-image: url('img/1.jpeg');"></div>
+        <div class="slide" style="background-image: url('img/2.jpeg');"></div>
+        <div class="slide" style="background-image: url('img/3.jpeg');"></div>
+        <div class="slide" style="background-image: url('img/4.jpeg');"></div>
+        <div class="slide" style="background-image: url('img/5.jpeg');"></div>
+    </div>
+    <div class="overlay">
+        <h1>LA AMO CON TODO MI CORAZÓN</h1>
+        <h1>FELIZ DÍA DE SAN VALENTÍN</h1>
+        <p>Eres lo mejor que me ha pasado, mi amor. Gracias por ser parte de mi vida. ¡Siempre juntos! ❤️</p>
+        <div class="heart">❤️</div>
+    </div>
+    <script>
+        function crearPétalos() {
+            const numPétalos = 30;
+            for (let i = 0; i < numPétalos; i++) {
+                let pétalo = document.createElement('div');
+                pétalo.classList.add('petal');
+                pétalo.style.left = Math.random() * 100 + 'vw';
+                pétalo.style.animationDuration = (Math.random() * 5 + 3) + 's';
+                document.body.appendChild(pétalo);
+                setTimeout(() => pétalo.remove(), 8000);
+            }
+        }
+        setInterval(crearPétalos, 1000);
+
+        // Slideshow Effect
+        let slides = document.querySelectorAll('.slide');
+        let index = 0;
+        function nextSlide() {
+            slides[index].classList.remove('active');
+            index = (index + 1) % slides.length;
+            slides[index].classList.add('active');
+        }
+        setInterval(nextSlide, 5000);
+    </script>
+</body>
+</html>
